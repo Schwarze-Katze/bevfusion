@@ -21,3 +21,13 @@ RUN pip install mmcv==1.4.0 mmcv-full==1.4.0 mmdet==2.20.0
 RUN pip install nuscenes-devkit
 RUN pip install mpi4py==3.0.3
 RUN pip install numba==0.48.0
+
+RUN mkdir -p /root/.ssh && \
+    chmod 0700 /root/.ssh && \
+    ssh-keyscan github.com >> /root/.ssh/known_hosts
+
+ENV ID_FILE id_rsa
+COPY --chown=root:root ~/.ssh/$ID_FILE /root/.ssh/$ID_FILE
+RUN chmod 600 /root/.ssh/$ID_FILE
+
+RUN git clone git@github.com:Schwarze-Katze/bevfusion.git /bevfusion
