@@ -27,7 +27,15 @@ RUN mkdir -p /root/.ssh && \
     ssh-keyscan github.com >> /root/.ssh/known_hosts
 
 ENV ID_FILE id_rsa
-COPY --chown=root:root ~/.ssh/$ID_FILE /root/.ssh/$ID_FILE
-RUN chmod 600 /root/.ssh/$ID_FILE
+COPY --chown=root:root ~/.ssh/${ID_FILE} /root/.ssh/${ID_FILE}
+RUN chmod 600 /root/.ssh/${ID_FILE}
 
-RUN git clone git@github.com:Schwarze-Katze/bevfusion.git /bevfusion
+# configure github config
+ENV USERNAME name
+ENV USEREMAIL email
+RUN git clone git@github.com:Schwarze-Katze/bevfusion.git /bevfusion && \
+    git config --global user.name ${USERNAME} && \
+    git config --global user.email ${USEREMAIL}
+
+WORKDIR /bevfusion
+RUN bash ./tools/download_pretrained.sh
