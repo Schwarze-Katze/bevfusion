@@ -14,6 +14,7 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86
 ENV PATH=$CONDA_DIR/bin:$PATH
 RUN conda install python=3.8 -y
 RUN conda install pytorch==1.10.1 torchvision==0.11.2 torchaudio==0.10.1 cudatoolkit=11.3 -c pytorch -y
+RUN pip install setuptools==58.0.4
 RUN pip install Pillow==8.4.0
 RUN pip install tqdm
 RUN pip install torchpack
