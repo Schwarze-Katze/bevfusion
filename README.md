@@ -147,13 +147,13 @@ torchpack dist-run -np 8 python tools/test.py [config file path] pretrained/[che
 For example, if you want to evaluate the detection variant of BEVFusion, you can try:
 
 ```bash
-torchpack dist-run -np 8 python tools/test.py configs/nuscenes/det/transfusion/secfpn/camera+lidar/swint_v0p075/convfuser.yaml pretrained/bevfusion-det.pth --eval bbox
+torchpack dist-run -np 1 python tools/test.py configs/nuscenes/det/transfusion/secfpn/camera+lidar/swint_v0p075/convfuser.yaml pretrained/bevfusion-det.pth --eval bbox
 ```
 
 While for the segmentation variant of BEVFusion, this command will be helpful:
 
 ```bash
-torchpack dist-run -np 8 python tools/test.py configs/nuscenes/seg/fusion-bev256d2-lss.yaml pretrained/bevfusion-seg.pth --eval map
+torchpack dist-run -np 1 python tools/test.py configs/nuscenes/seg/fusion-bev256d2-lss.yaml pretrained/bevfusion-seg.pth --eval map
 ```
 
 ### Training
