@@ -290,7 +290,7 @@ class LoadBEVSegmentation:
         for name in mappings:
             layer_names.extend(mappings[name])
         layer_names = list(set(layer_names))
-        print(data.keys())
+        
         location = data["location"]
         masks = self.maps[location].get_map_mask(
             patch_box=patch_box,
